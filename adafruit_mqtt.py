@@ -3,13 +3,13 @@ from Adafruit_IO import MQTTClient
 import time
 import random
 from simple_ai import *
-from uart import*
+from uart import *
 
 
 class Adafruit_MQTT:
     AIO_FEED_IDs = ["nutnhan1", "nutnhan2"]
     AIO_USERNAME = "minhcao2000"
-    AIO_KEY = "aio_gaaT48eTznhtpS7j5k14M5MDCl1o"
+    AIO_KEY = "aio_vVmk453IGGDbowXlKuUyncbIKCWc"
 
     def connected(self, client):
         print("Connected ...")
@@ -25,6 +25,16 @@ class Adafruit_MQTT:
 
     def message(self, client, feed_id, payload):
         print("Received: " + payload)
+        if feed_id == 'nutnhan1':
+            if payload == '0':
+                writeData("1")
+            else:
+                writeData("2")
+        if feed_id == 'nutnhan2':
+            if payload == '0':
+                writeData("3")
+            else:
+                writeData("4")
 
     def __init__(self):
         client = MQTTClient(self.AIO_USERNAME, self.AIO_KEY)
@@ -42,7 +52,7 @@ class Adafruit_MQTT:
             # counter = counter - 1
             # if (counter <= 0):
             #     counter = 5
-            
+
             #     print("Random data is publising...")
             #     if sensor_type == 0:
             #         print("Temperture...")

@@ -49,3 +49,7 @@ def readSerial(client):
                     mess = mess[end+1:]
     else:
         print('huhu')
+
+
+def writeData(data):
+    ser.write(str(data).encode())
